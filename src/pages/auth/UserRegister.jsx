@@ -107,7 +107,6 @@ function UserRegister() {
                 I agree to the <a href="#" className="form-link">terms and conditions</a>
               </label>
             </div>
-            </div>
 
             {/* Submit Button */}
             <button type="submit" className="btn btn-primary" style={{ marginTop: '24px' }}>
