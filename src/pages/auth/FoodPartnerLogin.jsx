@@ -1,65 +1,94 @@
-import React from 'react';
-import '../styles/theme.css';
+import React, { useState } from 'react'
 
-const FoodPartnerLogin = () => {
+function FoodPartnerLogin() {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    rememberMe: false
+  })
   return (
     <div className="auth-container">
       <div className="auth-wrapper">
         <div className="auth-card">
+          {/* Header */}
           <div className="auth-header">
-            <div className="auth-logo">🍕 Zomato</div>
-            <h1 className="auth-title">Partner Login</h1>
-            <p className="auth-subtitle">Manage your restaurant</p>
-            <span className="auth-badge">Food Partner</span>
+            <div className="auth-title">Partner Dashboard</div>
+            <div className="auth-subtitle">Sign in to manage your restaurant</div>
           </div>
 
+          {/* Form */}
           <form className="auth-form">
+            {/* Email */}
             <div className="form-group">
               <label className="form-label">Email Address</label>
               <input
                 type="email"
                 className="form-input"
-                placeholder="business@restaurant.com"
+                placeholder="you@restaurant.com"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               />
             </div>
 
+            {/* Password */}
             <div className="form-group">
               <label className="form-label">Password</label>
               <input
                 type="password"
                 className="form-input"
-                placeholder="Enter your password"
+                placeholder="••••••••"
+                value={formData.password}
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
               />
             </div>
 
-            <div className="form-checkbox-group">
-              <input type="checkbox" id="remember-partner" className="form-checkbox" />
-              <label htmlFor="remember-partner">Remember me</label>
+            {/* Remember Me & Forgot Password */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '8px' }}>
+              <div className="checkbox-group" style={{ margin: 0 }}>
+                <input
+                  type="checkbox"
+                  id="rememberMe"
+                  className="form-checkbox"
+                  checked={formData.rememberMe}
+                  onChange={(e) => setFormData({ ...formData, rememberMe: e.target.checked })}
+                />
+                <label htmlFor="rememberMe" className="checkbox-label" style={{ marginBottom: 0 }}>
+                  Remember me
+                </label>
+              </div>
+              <a href="#" className="form-link" style={{ fontSize: '13px' }}>
+                Forgot password?
+              </a>
             </div>
 
-            <a href="#" className="form-link" style={{ textAlign: 'right', fontSize: '13px' }}>
-              Forgot Password?
-            </a>
-
-            <button type="submit" className="auth-button">
+            {/* Submit Button */}
+            <button type="submit" className="btn btn-primary" style={{ marginTop: '24px' }}>
               Sign In
             </button>
           </form>
 
-          <div className="auth-divider">or continue with</div>
+          {/* Divider */}
+          <div className="form-divider">or continue with</div>
 
+          {/* Social Buttons */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+            <button type="button" className="btn btn-secondary">
+              Google
+            </button>
+            <button type="button" className="btn btn-secondary">
+              Apple
+            </button>
+          </div>
+
+          {/* Footer */}
           <div className="auth-footer">
-            <p className="auth-footer-text">New to Zomato for Business?</p>
-            <div className="auth-footer-links">
-              <a href="/food-partner/register" className="footer-link">
-                Register Restaurant
-              </a>
-            </div>
+            New restaurant?{' '}
+            <a href="/food-partner/register" className="form-link">Register Here</a>
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default FoodPartnerLogin;
+export default FoodPartnerLogin

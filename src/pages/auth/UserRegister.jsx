@@ -1,91 +1,129 @@
-import React from 'react';
-import '../styles/theme.css';
+import React, { useState } from 'react'
 
-const UserRegister = () => {
+function UserRegister() {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    password: '',
+    confirmPassword: '',
+    agreeTerms: false
+  })
   return (
     <div className="auth-container">
       <div className="auth-wrapper">
         <div className="auth-card">
+          {/* Header */}
           <div className="auth-header">
-            <div className="auth-logo">🍕 Zomato</div>
-            <h1 className="auth-title">Create Account</h1>
-            <p className="auth-subtitle">Join us as a Food Lover</p>
-            <span className="auth-badge">User</span>
+            <div className="auth-title">Create Account</div>
+            <div className="auth-subtitle">Join us as a customer</div>
           </div>
 
+          {/* Form */}
           <form className="auth-form">
-            <div className="form-group">
-              <label className="form-label">Full Name</label>
-              <input
-                type="text"
-                className="form-input"
-                placeholder="Enter your full name"
-              />
+            {/* Name Fields */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+              <div className="form-group">
+                <label className="form-label">First Name</label>
+                <input
+                  type="text"
+                  className="form-input"
+                  placeholder="John"
+                  value={formData.firstName}
+                  onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Last Name</label>
+                <input
+                  type="text"
+                  className="form-input"
+                  placeholder="Doe"
+                  value={formData.lastName}
+                  onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                />
+              </div>
             </div>
 
+            {/* Email */}
             <div className="form-group">
               <label className="form-label">Email Address</label>
               <input
                 type="email"
                 className="form-input"
                 placeholder="you@example.com"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               />
             </div>
 
+            {/* Phone */}
             <div className="form-group">
               <label className="form-label">Phone Number</label>
               <input
                 type="tel"
                 className="form-input"
                 placeholder="+1 (555) 000-0000"
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
               />
             </div>
 
+            {/* Password */}
             <div className="form-group">
               <label className="form-label">Password</label>
               <input
                 type="password"
                 className="form-input"
-                placeholder="Create a strong password"
+                placeholder="••••••••"
+                value={formData.password}
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
               />
             </div>
 
+            {/* Confirm Password */}
             <div className="form-group">
               <label className="form-label">Confirm Password</label>
               <input
                 type="password"
                 className="form-input"
-                placeholder="Confirm your password"
+                placeholder="••••••••"
+                value={formData.confirmPassword}
+                onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
               />
             </div>
 
-            <div className="form-checkbox-group">
-              <input type="checkbox" id="terms" className="form-checkbox" />
-              <label htmlFor="terms">
-                I agree to the{' '}
-                <a href="#" className="form-link">
-                  Terms & Conditions
-                </a>
+            {/* Terms Checkbox */}
+            <div className="checkbox-group">
+              <input
+                type="checkbox"
+                id="agreeTerms"
+                className="form-checkbox"
+                checked={formData.agreeTerms}
+                onChange={(e) => setFormData({ ...formData, agreeTerms: e.target.checked })}
+              />
+              <label htmlFor="agreeTerms" className="checkbox-label">
+                I agree to the <a href="#" className="form-link">terms and conditions</a>
               </label>
             </div>
+            </div>
 
-            <button type="submit" className="auth-button">
+            {/* Submit Button */}
+            <button type="submit" className="btn btn-primary" style={{ marginTop: '24px' }}>
               Create Account
             </button>
           </form>
 
+          {/* Footer */}
           <div className="auth-footer">
-            <p className="auth-footer-text">Already have an account?</p>
-            <div className="auth-footer-links">
-              <a href="/user/login" className="footer-link">
-                Sign In
-              </a>
-            </div>
+            Already have an account?{' '}
+            <a href="/user/login" className="form-link">Sign In</a>
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default UserRegister;
+export default UserRegister
